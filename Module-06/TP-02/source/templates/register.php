@@ -20,7 +20,18 @@
                 <?php endif; ?>
                 <label for="adresse">Adresse:</label>
                 <input type="text" id="adresseInput" name="adresse" required>
-                <ul id="suggestionsList"></ul>
+
+                <div id="suggestionListAdresse">
+
+                </div>
+                <div id="map"></div>
+
+                <script src="https://unpkg.com/@mapbox/mapbox-sdk/umd/mapbox-sdk.min.js"></script>
+
+<script>
+
+
+</script>
                 <?php if (isset($data['errors']['adresse'])) : ?>
                     <p class="error-message"><?php echo $data['errors']['adresse']; ?></p>
                 <?php endif; ?>

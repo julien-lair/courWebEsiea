@@ -4,18 +4,18 @@ include_once 'service.php';
 
 function dbConnect(){
     try{
-        $pdo = new PDO('mysql:host=localhost;dbname=esiea_web', 'root', '');
+        $pdo = new PDO('mysql:host=localhost;dbname=esiea_web', 'root', 'root');
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         return $pdo;
     }catch(Exception $e){
         throw new Exception('Erreur lors de la connexion à la base de données : ' . $e->getMessage());
     }
-}   
+}
 
 function registerUser($nom, $prenom, $adresse, $email, $password, $confirmPassword) {
     $pdo = dbConnect();
     //role 0 = admin, 1 = modérateur, 2 = utilisateur
-    $defaultRole = 2; 
+    $defaultRole = 2;
     // Vérifier le jeton CSRF
     functions\verifyCsrfToken();
     try {
@@ -94,7 +94,7 @@ function updateUserInfo($id, $nom, $prenom, $adresse, $email, $password, $confir
 
             } else {
                 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-        
+
                 $stmt = $pdo->prepare("UPDATE utilisateurs SET nom = ?, prenom = ?, adresse = ?, email = ?, password = ? WHERE id = ?");
                 $stmt->execute([$nom, $prenom, $adresse, $email, $hashedPassword, $id]);
                 return true;
@@ -112,11 +112,11 @@ function updateUserInfo($id, $nom, $prenom, $adresse, $email, $password, $confir
 
             } else {
                 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-        
+
                 $stmt = $pdo->prepare("UPDATE utilisateurs SET nom = ?, prenom = ?, adresse = ?, email = ?, password = ? WHERE id = ?");
                 $stmt->execute([$nom, $prenom, $adresse, $email, $hashedPassword, $id]);
                 $_SESSION['email'] = $email;
-                
+
                 return true;
             }
         }
@@ -128,7 +128,7 @@ function updateUserInfo($id, $nom, $prenom, $adresse, $email, $password, $confir
 
 
 function closeAccount($id) {
-    $pdo = dbConnect(); 
+    $pdo = dbConnect();
 
     try {
         // Supprimer le compte de l'utilisateur (Requête préparée pour prévenir l'injection SQL)
