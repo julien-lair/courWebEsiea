@@ -27,7 +27,7 @@ function afficherSuggestions(suggestions) {
     suggestionsList.innerHTML = html;
 }
 
-mapboxgl.accessToken = 'pk.eyJ1IjoiZnV6ZTcyIiwiYSI6ImNsMmtxeGkycTA3MGQza3BjcnJ2bTh0ZngifQ.UKGfJ9sG12cWOt2np34dQg';
+mapboxgl.accessToken = 'token';
   function affciherMap(adresse){
     const mapboxClient = mapboxSdk({ accessToken: mapboxgl.accessToken });
     mapboxClient.geocoding
@@ -79,7 +79,7 @@ function chooseAdresse(adresse){
 
 
 function getMeteo(adresse){
-  const apiKey = 'b0e59e36b9f44f46a2dc08f62a56b1c3'; // Remplacez par votre clé API OpenCage
+  const apiKey = 'token'; // Remplacez par votre clé API OpenCage
   const url = `https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(adresse)}&key=${apiKey}`;
 
   result = "";
